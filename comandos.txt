@@ -1,0 +1,54 @@
+Creamos el package.json
+    npm init --yes 
+
+Instalamos el socket
+    npm i express socket.io
+
+    npm install nodemon -D 
+
+El run se agrega cuando es diferente a start en el npm start
+    npm run dev
+
+
+=========================================================
+
+Para inicializar express
+
+const app = express();
+
+*********************************************************
+
+// Configuramos el puerto 
+app.set('port', process.env.PORT || 3000);
+
+// archivos estáticos -> le indicamos que nuestros archivos 
+// están en public
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Iniciamos el servidor
+app.listen(app.get('port'), () => {
+    console.log('Servidor en puerto', app.get('port'));
+});
+
+*********************************************************
+Para no tener problemas con las rutas usamos el path.join
+separado por comas
+
+const path = require('path');
+
+path.join(nombre_ruta, ruta_extra)
+
+***********************************************************
+
+Para llamar al socket 
+
+
+const SocketIO = require('socket.io');
+// Traemos el servidor al cuál lo vamos a conectar
+const io = SocketIO(server);
+
+// Websockets
+io.on('connection', () => {
+    console.log('nueva conexión');
+})
+
